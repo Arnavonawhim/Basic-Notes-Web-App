@@ -24,5 +24,6 @@ from django.http import HttpResponse
 
 urlpatterns = [
     path("",include("mainnotes.urls")),
+    path("",include("userauth.urls")),
     path('admin/', admin.site.urls),
 ]
