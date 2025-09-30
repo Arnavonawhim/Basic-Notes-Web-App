@@ -21,7 +21,6 @@ def login_page(request):
         messages.error(request, "Invalid email or password") 
         return render(request, 'login.html')
     
-    return render(request,'login.html')
 
 
 def register(request):
