@@ -4,23 +4,25 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User
 
 def login_page(request):
-    email=request.POST.get("email")
-    password=request.POST.get("password")
-    
-    if not User.objects.filter(email=email).exists():
-        messages.error(request,"Email Is not registered")
-        return render(request,'login.html')
-    else:
-        person=User.objects.get(email=email)
+    if request.method=='POST':
+        email=request.POST.get("email")
+        password=request.POST.get("password")
+        
+        if not User.objects.filter(email=email).exists():
+            messages.error(request,"Email Is not registered")
+            return render(request,'login.html')
+        else:
+            person=User.objects.get(email=email)
 
-    person = authenticate(request, username=person.username, password=password)
-    if person is not None:
-        login(request,person)
-        return redirect('notes')
-    else:
-        messages.error(request, "Invalid email or password") 
-        return render(request, 'login.html')
-    
+        person = authenticate(request, username=person.username, password=password)
+        if person is not None:
+            login(request,person)
+            return redirect('notes')
+        else:
+            messages.error(request, "Invalid email or password") 
+            return render(request, 'login.html')
+    else:    
+        return render(request,'login.html')
 
 
 def register(request):

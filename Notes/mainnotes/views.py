@@ -24,4 +24,10 @@ def note_add(request):
     messages.success(request, "Note Was Added")
     return redirect('notes')
 
-    
+@login_required(login_url='login_page')
+def note_delete(request, note_id):
+    current_note = get_object_or_404(Note, id=note_id, user=request.user)
+    if request.method == 'POST':
+        current_note.delete()
+        messages.success(request, "Note Deleted")
+        return redirect('notes')
