@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -21,10 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-b!6h-0kmw_wt7#ae%#0v!*2i)4frg7d*=%tnb4bxt@mty6vol+'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['basic-notes-app-ljh7.onrender.com', 'localhost', '127.0.0.1']
 
@@ -80,7 +81,7 @@ import dj_database_url
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgresql://arnav:e92jdzBSERj8al5c8eSUTMH7vTJ8zLgT@dpg-d3d7on37mgec73b4m9q0-a.singapore-postgres.render.com/notes_vn5s',
+        default=config('DATABASE_URL'),
         conn_max_age=600
     )
 }

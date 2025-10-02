@@ -16,7 +16,6 @@ def note_add(request):
     title = request.POST.get('title')
     content = request.POST.get('content')
     image = request.FILES.get('image')
-
     if not title or not content:
         messages.error(request, "Notes Can't be empty")
         return render(request, 'note_add.html')
@@ -44,13 +43,13 @@ def note_edit(request,note_id):
     new_content=request.POST.get('content')
     new_image=request.FILES.get('image')
 
-    if not new_title or not new_content or not new_image:
+    if not new_title or not new_content :
         messages.error(request,"Update Something")
         return render(request, 'note_edit.html', {'note': current_note})
-    
-    current_note.title=new_title
-    current_note.content=new_content
-    current_note.image=new_image
-    current_note.save()
-    messages.success(request,"Note was updated")
-    return redirect('notes')
+    else:
+        current_note.title=new_title
+        current_note.content=new_content
+        current_note.image=new_image
+        current_note.save()
+        messages.success(request,"Note was updated")
+        return redirect('notes')
