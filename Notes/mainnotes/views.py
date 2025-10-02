@@ -4,7 +4,6 @@ from django.contrib import messages
 from .models import Note
 
 
-
 @login_required(login_url='login_page')
 def notes(request):
     person_notes = Note.objects.filter(user=request.user)
