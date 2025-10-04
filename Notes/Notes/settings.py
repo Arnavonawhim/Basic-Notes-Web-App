@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'userauth.apps.UserauthConfig',
     'api.apps.ApiConfig',
     'rest_framework_simplejwt',
+    'drf_yasg',
     'rest_framework'
 ]
 
