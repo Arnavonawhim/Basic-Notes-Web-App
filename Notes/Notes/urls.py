@@ -25,7 +25,7 @@ from django.http import HttpResponse
 
 
 urlpatterns = [
-    #path('api/', include('api.urls')), add when need to use postman
+    path('api/', include('api.urls')), 
     path("",include("mainnotes.urls")),
     path("",include("userauth.urls")),
     path('admin/', admin.site.urls),
